@@ -48,6 +48,11 @@ button.primary:hover:not(:disabled) { filter: brightness(1.08); }
 button small { display: block; font-weight: 400; font-size: 11px; opacity: .8; }
 button.small { font-size: 12px; padding: 3px 9px; }
 button.ghost { background: transparent; }
+button.soft {
+  background: color-mix(in srgb, var(--accent) 10%, var(--panel)); color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--panel)); font-weight: 600;
+}
+button.soft:hover:not(:disabled) { background: color-mix(in srgb, var(--accent) 16%, var(--panel)); border-color: var(--accent); }
 button.warn { color: var(--err); }
 button.icon { border: none; background: none; font-size: 20px; line-height: 1; padding: 0 4px; color: var(--muted); }
 
@@ -92,22 +97,28 @@ main { padding: 20px 24px 40px; min-width: 0; }
 
 /* ---------------------------------------------------------------- flow */
 .flow {
-  display: grid; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1.2fr) 56px minmax(0, 2.4fr);
+  display: grid; grid-template-columns: minmax(210px, 1fr) 48px minmax(240px, 1.2fr) 48px minmax(0, 2.4fr);
   align-items: stretch; margin-bottom: 20px;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
+  .flow { grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr); }
+  .flow > .connector:nth-of-type(4) { display: none; }
+  .flow > .s-pay { grid-column: 1 / -1; margin-top: 12px; }
+}
+@media (max-width: 900px) {
   .flow { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .flow > .connector:nth-of-type(4) { display: flex; }
   .connector b { transform: rotate(90deg); }
 }
 .stage { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--plan-l); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
 .s-bill { border-top-color: var(--bill-l); }
 .s-pay { border-top-color: var(--pay-l); }
-.stage-head { display: flex; align-items: center; gap: 8px; }
+.stage-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
 .stage-head h3 { margin: 0; font-size: 15px; }
 .stage-num { width: 22px; height: 22px; border-radius: 50%; background: var(--navy); color: var(--panel); font-weight: 700; display: inline-grid; place-items: center; font-size: 12px; flex: none; }
 .stage-num.small { width: auto; padding: 0 8px; border-radius: 99px; }
 .stage-desc { margin: 0; color: var(--muted); font-size: 12.5px; }
-.status-pill { margin-left: auto; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; padding: 1px 9px; border-radius: 99px; background: var(--plan); color: var(--plan-l); }
+.status-pill { white-space: nowrap; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; padding: 1px 9px; border-radius: 99px; background: var(--plan); color: var(--plan-l); }
 .s-bill .status-pill { background: var(--bill); color: var(--bill-l); }
 .callout { font-size: 12px; font-weight: 600; color: var(--pay-l); background: var(--pay); border-radius: 6px; padding: 4px 8px; align-self: flex-start; }
 .connector { padding: 0 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: var(--muted); text-align: center; }
@@ -128,6 +139,7 @@ main { padding: 20px 24px 40px; min-width: 0; }
 .chip {
   display: inline-flex; align-items: center; gap: 6px; padding: 2px 3px 2px 8px; border-radius: 7px;
   border: 1px solid var(--line); background: var(--panel); color: var(--ink); text-decoration: none; font-size: 12px;
+  white-space: nowrap; max-width: 100%;
 }
 .chip:hover { border-color: var(--accent); }
 .chip.zero { opacity: .55; }

@@ -48,7 +48,7 @@ export default function PlannedTable({ state, dispatch, onNewPlanned }: Props) {
           <span className="muted small">Loan L-1001 · Dealer D-042 · tick billed rows to pay them</span>
         </div>
         <div className="head-actions">
-          <button className="ghost" onClick={onNewPlanned}>+ New planned transaction</button>
+          <button className="soft" onClick={onNewPlanned}>+ New planned transaction</button>
           <button className="primary" onClick={() => dispatch({ type: 'billRecognition' })} title="Bills every planned row whose invoice / bill date has arrived">
             Run bill recognition <small>{due ? `${due} due today` : 'nothing due today'}</small>
           </button>
